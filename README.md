@@ -4,7 +4,7 @@
 
 ### Dynamic Programming
 
-* **[45. Jump Game II](./Solution/45.%20Jump%20Game%20II/45.%20Jump%20Game%20II.cpp)**
+* **[45. Jump Game II](./Solution/45.%20Jump%20Game%20II/)**
 
 > Given an array of non-negative integers, you are initially positioned at the first index of the array.
 >
