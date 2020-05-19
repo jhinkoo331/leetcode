@@ -17,20 +17,20 @@ public:
 		for(int ii = 1; ii < n; ++ii){
 			int iii = ii - 1;
 			v[a][ii] = v[e][iii];
-			v[e][ii] = (v[a][iii] + v[i][iii]) % quotient;
-			v[i][ii] = (v[a][iii] + v[e][iii] + v[o][iii] + v[u][iii]) % quotient;
-			v[o][ii] = (v[i][iii] + v[u][iii]) % quotient;
+			v[e][ii] = (v[a][iii] + v[i][iii]) % divisor;
+			v[i][ii] = (v[a][iii] + v[e][iii] + v[o][iii] + v[u][iii]) % divisor;
+			v[o][ii] = (v[i][iii] + v[u][iii]) % divisor;
 			v[u][ii] = v[a][iii];
 		}
 		int sum = 0;
 		for(int i = 0; i < 5; ++i){
 			sum += v[i].back();
-			sum %= quotient;
+			sum %= divisor;
 		}
 		return sum;
 	}
 private:
-	const int quotient = 1000000000 + 7;
+	const int divisor = 1000000000 + 7;
 };
 
 int main(){
