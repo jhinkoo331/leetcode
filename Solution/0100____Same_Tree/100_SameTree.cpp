@@ -28,4 +28,5 @@ private:
 			return false;
 		}
 	}
+	// todo: via iteration.
 };
