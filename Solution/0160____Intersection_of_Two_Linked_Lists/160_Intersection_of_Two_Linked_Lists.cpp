@@ -13,7 +13,7 @@ struct ListNode {
 class Solution {
 public:
 	ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-		return sln_2(headA, headB);
+		return sln_3(headA, headB);
 	}
 private:
 	//* shift one of two pointers
@@ -68,5 +68,26 @@ private:
 			ss.pop();
 		}
 		return pre;
+	}
+	//* maintain two pointers
+	ListNode* sln_3(ListNode* h, ListNode* hh){
+		ListNode* t = h, * tt = hh;
+		while(true){
+			if(t == tt){
+				return t;
+			}else{
+				if(t == nullptr){
+					t = hh;
+				}else{
+					t = t->next;
+				}
+				if(tt == nullptr){
+					tt = h;
+				}else{
+					tt = tt->next;
+				}
+			}
+		}
+		return nullptr;		//* make it compile
 	}
 };
