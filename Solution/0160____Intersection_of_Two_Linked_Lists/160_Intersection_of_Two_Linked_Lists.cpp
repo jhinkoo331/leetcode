@@ -1,4 +1,5 @@
-
+#include <stack>
+using namespace std;
 
 #define NULL 0
 
@@ -12,9 +13,10 @@ struct ListNode {
 class Solution {
 public:
 	ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-		return solution1(headA, headB);
+		return sln_2(headA, headB);
 	}
 private:
+	//* shift one of two pointers
 	ListNode* solution1(ListNode* h, ListNode* hh){
 		if(h == nullptr || hh == nullptr){		// todo
 			return nullptr;
@@ -46,5 +48,25 @@ private:
 			hh = hh->next;
 		}
 		return h;
+	}  
+
+	//* use stack to iterate List backward
+	ListNode* sln_2(ListNode* h, ListNode* hh){
+		stack<ListNode*> s, ss;
+		while(h != nullptr){
+			s.push(h);
+			h = h->next;
+		}
+		while(hh != nullptr){
+			ss.push(hh);
+			hh = hh->next;
+		}
+		ListNode* pre = nullptr;
+		while(!s.empty() && !ss.empty() && s.top() == ss.top()){
+			pre = s.top();
+			s.pop();
+			ss.pop();
+		}
+		return pre;
 	}
 };
