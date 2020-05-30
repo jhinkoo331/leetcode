@@ -1,14 +1,6 @@
 #include <vector>
+#include ".\..\..\model\ListNode.cpp"
 using namespace std;
-
-struct ListNode {
-	int val;
-	ListNode *next;
-	ListNode() : val(0), next(nullptr) {}
-	ListNode(int x) : val(x), next(nullptr) {}
-	ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
-
 
 class Solution {
 public:
@@ -51,20 +43,3 @@ private:
 		return ret;
 	}
 };
-
-
-int main(){
-	ListNode* root = new ListNode(1);
-	root->next = new ListNode(2);
-	root->next->next = new ListNode(3);
-	root->next->next->next = new ListNode(4);
-	root->next->next->next->next = new ListNode(5);
-	root->next->next->next->next->next = new ListNode(6);
-	root->next->next->next->next->next->next = new ListNode(7);
-	root->next->next->next->next->next->next->next = new ListNode(8);
-	root->next->next->next->next->next->next->next->next = new ListNode(9);
-	root->next->next->next->next->next->next->next->next->next = new ListNode(10);
-	Solution sln;
-	sln.splitListToParts(root, 3);
-	return 0;
-}
