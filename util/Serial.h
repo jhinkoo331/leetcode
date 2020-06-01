@@ -31,7 +31,9 @@ void Serial::de_serialize(ListNode*& head, string s){
 		tail->next = new ListNode(val);
 		tail = tail->next;
 	}
-	head = head->next;
+	ListNode* temp = head->next;
+	delete head;
+	head = temp;
 }
 
 
