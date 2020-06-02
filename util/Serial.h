@@ -16,7 +16,7 @@ public:
 
 void Serial::de_serialize(ListNode*& head, std::string s){
 	for(int i = 0; i < s.size(); ++i){
-		if(!isdigit(s[i])){
+		if(!isdigit(s[i]) & s[i] != '-' & s[i] != '+'){
 			s[i] = ' ';
 		}
 	}
