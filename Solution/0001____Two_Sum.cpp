@@ -1,10 +1,16 @@
 #include <vector>
-#include <map>
+#include <unordered_map>
 using namespace std;
 
 class Solution {
 public:
-    vector<int> twoSum_1(vector<int>& nums, int target) {
+	vector<int> twoSum(vector<int>& nums, int target){
+		return twoSum_2(nums, target);
+	}
+private:
+	// pair<value, index>
+	vector<vector<pair<int, int>>> data;
+	vector<int> twoSum_1(vector<int>& nums, int target) {
 		data.resize(0x00010000);
 		int sz = nums.size();
 		for(int i = 0; i != sz; ++i){
@@ -19,8 +25,9 @@ public:
 			}
 		}
 		return vector<int> {};		// 'cuz there is always solution, this line is never reached, add this line to make compile pass.
-    }
-	vector<int> twoSum(vector<int>& nums, int target){
+	}
+	//* [87, 57]
+	vector<int> twoSum_2(vector<int>& nums, int target){
 		data.resize(16);
 		int sz = nums.size();
 		for(int i = 0; i != sz; ++i)
@@ -36,24 +43,17 @@ public:
 		}
 		return vector<int> {};
 	}
-private:
-	// pair<value, index>
-	vector<vector<pair<int, int>>> data;
+	//* [87, 87]
+	vector<int> twoSum_3(vector<int>& nums, int target){
+		unordered_map<int, int> mp;
+		for(int i = 0; i < nums.size(); ++i){
+			int temp = target - nums[i];
+			if(mp.count(temp)){
+				return {i, mp[temp]};
+			}else{
+				mp[nums[i]] = i;
+			}
+		}
+		return {};
+	}
 };
-
-
-int main(){
-	int i = sizeof(pair<int, int>);
-	Solution sln;
-	vector<int> nums = {-3, 4, 3, 90};
-	vector<int> numss = {3, 3};
-	vector<int> numsss = {0, 4, 3, 0};
-	vector<int> nums_4 = {-1, -2, -3, -4, -5};
-	int target_4 = -8;
-	int target = 9;
-	// sln.twoSum(, 0);
-	sln.twoSum(nums, 0);
-	sln.twoSum(numsss, 0);
-	sln.twoSum(nums_4, target_4);
-	return 0;
-}
