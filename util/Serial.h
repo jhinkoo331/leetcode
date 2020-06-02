@@ -5,18 +5,16 @@
 #include <sstream>
 #include "model\ListNode.h"
 
-using namespace std;
-
 
 class Serial{
 public:
 	static int k;
-	static void de_serialize(ListNode*& head, string s);
+	static void de_serialize(ListNode*& head, std::string s);
 };
 
 
 
-void Serial::de_serialize(ListNode*& head, string s){
+void Serial::de_serialize(ListNode*& head, std::string s){
 	for(int i = 0; i < s.size(); ++i){
 		if(!isdigit(s[i])){
 			s[i] = ' ';
