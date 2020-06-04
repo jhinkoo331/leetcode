@@ -19,6 +19,7 @@ private:
 	 * @param preorder_inorder two traversal sequence
 	 * @param l_r_ll_rr left and right index of the sequence, note that valid range are [l, r) and [ll, rr)
 	 */
+	//TODO: reduce a parameter, it still works.
 	TreeNode* buildTree_1(vector<int>& preorder, int l, int r, vector<int>& inorder, int ll, int rr){
 		//* position is the index of the root node in `inorder` sequence
 		int pos = ll;
