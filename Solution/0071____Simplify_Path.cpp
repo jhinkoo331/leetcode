@@ -12,15 +12,19 @@ public:
 private:
 	//* [66, 50]
 	string simplifyPath_1(string path){
-		path = '/' + path;
-		path += '/';
+		if(path.empty())
+			return "/";
+		if(path.front() != '/')
+			path.insert(0, "/");
+		if(path.back() != '/')
+			path.push_back('/');
 		vector<string> s;
 		vector<int> v;
 		for(int i = 0; i < path.size(); ++i)
 			if(path[i] == '/')
 				v.push_back(i);
-		for(int i = 0; i < v.size() - 1; ++i){
-			string cur = path.substr(v[i], v[i + 1] - v[i]);
+		for(int i = 1; i < v.size(); ++i){
+			string cur = path.substr(v[i - 1], v[i] - v[i - 1]);
 			if(cur == "/" || cur == "/."){
 				//* pass
 			}else if(cur == "/.."){
