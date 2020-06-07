@@ -10,7 +10,7 @@ using std::min;
 class Solution {
 public:
 	int trap(vector<int>& height) {
-		return trap_1(height);
+		return trap_2(height);
 	}
 private:
 	/**
@@ -45,7 +45,48 @@ private:
 		}
 		return ans;
 	}
+	/**
+	 * perf: [43, 35]
+	 * Time: O(n): two-pass
+	 * Space: O(1): constan extra space used
+	 */
+	int trap_2(vector<int>& height){
+		if(height.empty())
+			return 0;
+		int heightest = 0;
+		for(auto e: height)
+			heightest = max(heightest, e);
+		int cur_height;
+		int ans = 0;
+
+		cur_height = 0;
+		int left = 0;
+		while(height[left] != heightest){
+			if(height[left] > cur_height)
+				cur_height = height[left];
+			else if(height[left] < cur_height)
+				ans += cur_height - height[left];
+			left++;
+		}
+
+		cur_height = 0;
+		int right = height.size() - 1;
+		while(height[right] != heightest){
+			if(height[right] > cur_height)
+				cur_height = height[right];
+			else if(height[right] < cur_height)
+				ans += cur_height - height[right];
+			right--;
+		}
+
+		while(left != right){
+			ans += heightest - height[left];
+			left++;
+		}
+		return ans;
+	}
 };
+
 
 
 int main(){
