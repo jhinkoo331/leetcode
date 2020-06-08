@@ -9,6 +9,8 @@ public:
 private:
 	/**
 	 * ! [100, 34]
+	 * ! Time: O(n)
+	 * ! Space: O(n)
 	 * If we pain the first column as "RYR", the second column has 5 different choice:
 	 * YRY, GRY, YRG, GRG, YGY; 3 of which are in format "ABA" and two of which are in format "ABC"
 	 * If we pain the first column as "GRY", the second column has 4 different choice:
@@ -34,6 +36,8 @@ private:
 	}
 	/**
 	 * ! [100, 95]
+	 * ! Time: O(n)
+	 * ! Space: O(1)
 	 * We may reduce vector<unsigned> ABA and ABC to only two unsigned number ABA and ABC to reduce memory used
 	 */
 	int numOfWays_2(int n){
