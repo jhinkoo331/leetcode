@@ -11,3 +11,8 @@ So difficult...<br/>
 ### Unsorted Problems
 
 * **[9. Palindrome Number](./Solution)**_<br/>Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward._
+
+### Tree
+
+#### Binary Tree
+
