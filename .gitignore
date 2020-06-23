@@ -1,0 +1,10 @@
+# IDE environment
+/.vscode/
+/.vs/
+/.idea/
+
+# certain files
+*.exe
+#*.gitignore
+
+# import from GitHub
