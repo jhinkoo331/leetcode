@@ -10,7 +10,7 @@ using std::pair;
 class Solution {
 public:
 	int maxArea(vector<int>& height) {
-		return _2(height);
+		return _3(height);
 	}
 private:
 	int maxArea_1(vector<int>& height){
@@ -61,6 +61,47 @@ private:
 						ans = max(ans, (v[ii].second - i) * min(height[i], v[ii].first));
 			}
 		return ans;
+	}
+	/**
+	 * @brief dual pointers
+	 * @perf: [6, 48]
+	 */
+	int _3(vector<int>& height){
+		int cur_max = 0;
+		int ll = 0, rr = height.size() - 1;
+		while(ll < rr){
+			cur_max = max(cur_max, min(height[ll], height[rr]) * (rr - ll));
+			if(height[ll] < height[rr]){
+				int i = ll + 1;
+				while(height[i] <= height[ll])
+					++i;
+				ll = i;
+			}else{
+				int i = rr - 1;
+				while(height[i] < height[rr])
+					--i;
+				rr = i;
+			}
+		}
+		return cur_max;
+	}
+	/**
+	 * @brief solution from leetcode-cn official post
+	 * @perf: [15, 40]
+	 * @param height 
+	 * @return int 
+	 */
+	int _4(vector<int>& height){
+		int cur_max = 0;
+		int ll = 0, rr = height.size() - 1;
+		while(ll < rr){
+			cur_max = max(cur_max, min(height[rr], height[ll]) * (rr - ll));
+			if(height[ll] < height[rr])
+				++ll;
+			else
+				--rr;
+		}
+		return cur_max;
 	}
 };
 
