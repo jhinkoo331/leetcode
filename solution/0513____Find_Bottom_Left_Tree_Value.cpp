@@ -1,12 +1,14 @@
 #include "model\TreeNode.h"
 #include <vector>
+#include <queue>
+using std::queue;
 using std::vector;
 
 
 class Solution {
 public:
 	int findBottomLeftValue(TreeNode* root) {
-		return _1(root);
+		return _2(root);
 	}
 	/**
 	 * @brief level traverse
@@ -27,6 +29,29 @@ public:
 					new_row.push_back(e->right);
 			}
 			row.swap(new_row);
+		}
+		return ans;
+	}
+	/**
+	 * @brief level traverse
+	 * @perf: [90, 48]
+	 * @param root 
+	 * @return int 
+	 */
+	int _2(TreeNode* root){
+		queue<TreeNode*> q;
+		q.push(root);
+		int ans;
+		while(q.size()){
+			int count = q.size();
+			ans = q.front()->val;
+			while(count--){
+				if(q.front()->left != nullptr)
+					q.push(q.front()->left);
+				if(q.front()->right != nullptr)
+					q.push(q.front()->right);
+				q.pop();
+			}
 		}
 		return ans;
 	}
