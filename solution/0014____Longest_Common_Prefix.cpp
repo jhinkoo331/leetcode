@@ -27,6 +27,27 @@ private:
                                         return strs.front().substr(0, i);
                 return strs.front().substr(0, min_len);
         }
+        /**
+         * @brief 4ms, 88 
+         * 
+         * @param strs 
+         * @return string 
+         */
+        string _3(vector<string>& strs){
+                if(strs.empty())
+                        return "";
+                //* the length of current common prefix
+                int len = strs[0].size();
+                for(int i = 1; i < strs.size(); ++i){
+                        len = len < strs[i].size() ? len : strs[i].size();
+                        for(int ii = 0; ii < len; ++ii)
+                                if(strs[0][ii] != strs[i][ii]){
+                                        len = ii;
+                                        continue;
+                                }
+                }
+                return strs[0].substr(0, len);
+        }
         string _2(vector<string>& strs) {
                 int min_len = INT_MAX;
                 int len = 0;
