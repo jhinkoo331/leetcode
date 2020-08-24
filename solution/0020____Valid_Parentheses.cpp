@@ -6,7 +6,7 @@ using namespace std;
 class Solution {
 public:
 	bool isValid(string s){
-		return isValid_2(s);
+		return _2(s);
 	}
 private:
 	//* perf: [23, 100]
@@ -47,49 +47,38 @@ private:
 			return false;
 	}
 	
-	//* perf[100, 100]
-	//* compared with isValid_1, we push a ')' into the stack at the very first, so that so stack is never empty,
-	//* we don't need to check whether the stack is empty before calling stack.top()
-	bool isValid_2(const string& s){
+	/**
+	 * @brief code-style enhanced
+	 * @perf: 100, 100
+	 */
+	bool _2(const string& s){
 		stack<char> stk;
-		stk.push(')');			//* the stack is never empty
-		for(const auto& c: s){
-			if(c == '(' | c == '[' | c == '{'){
+		stk.push(')');			//* the stack is made never empty
+		for(const auto& c: s)
+			if(c == '(' | c == '[' | c == '{')
 				stk.push(c);
-			}else{
-				switch (c)
-				{
+			else
+				switch(c){
 				case ')':
-					if(stk.top() == '('){
+					if(stk.top() == '(')
 						stk.pop();
-					}else{
+					else
 						return false;
-					}
 					break;
 				case ']':
-					if(stk.top() == '['){
+					if(stk.top() == '[')
 						stk.pop();
-					}else{
+					else
 						return false;
-					}
 					break;
 				case '}':
-					if(stk.top() == '{'){
+					if(stk.top() == '{')
 						stk.pop();
-					}else{
+					else
 						return false;
-					}
-					break;
-				default:
 					break;
 				}
-			}
-		}
-		if(stk.size() == 1){
-			return true;
-		}else{
-			return false;
-		}
+		return stk.size() == 1;
 	}
 };
 
