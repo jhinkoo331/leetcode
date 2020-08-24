@@ -5,6 +5,7 @@
 
 # certain files
 *.exe
+*.stackdump
 #*.gitignore
 
 # import from GitHub
