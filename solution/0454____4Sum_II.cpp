@@ -43,5 +43,23 @@ private:
                                 ans += um[- e - ee];
                 return ans;
         }
+
+        /**
+         * @brief compared with _2, we use index-based iterating rather than range-based one.
+         * @perf: 63, 37. no improvement observed
+         */
+        int _3(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D){
+                unordered_map<int, int> um;
+                int sz = A.size();
+                for(int i = 0; i < sz; ++i)
+                        for(int ii = 0; ii < sz; ++ii)
+                                ++um[A[i] + B[ii]];
+                int ans = 0;
+                for(int i = 0; i < sz; ++i)
+                        for(int ii = 0; ii < sz; ++ii)
+                                //TODO: reduce unnecessary um space consumption
+                                ans += um[- C[i] - D[ii]];
+                return ans;
+        }
         //TODO: reduce runtime and space consumption by analysing 4 vector's sizes
 };
