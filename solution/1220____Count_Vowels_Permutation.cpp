@@ -5,10 +5,19 @@ enum vowel {a, e, i, o, u, x};
 
 class Solution {
 public:
-	int countVowelPermutation(int n) {
-		if(n <= 0){
+	int countVowelPermutation(int n){
+		return _2(n);
+	}
+public:
+	/**
+	 * @brief 
+	 * @perf: 73, 59
+	 * @param n 
+	 * @return int 
+	 */
+	int _1(int n) {
+		if(n <= 0)
 			return 0;
-		}
 		vector<vector<unsigned>> v(5);
 		for(int ii = 0; ii < 5; ++ii){
 			v[ii].resize(n);
@@ -29,8 +38,33 @@ public:
 		}
 		return sum;
 	}
+
+	/**
+	 * @brief updated from _1
+	 * @perf: 73, 79. Memory consumption reduced.
+	 */
+	int _2(int n){
+		if(n <= 0)
+			return 0;
+		vector<unsigned> v(5, 1);
+		vector<unsigned> v_temp(5);
+		for(int ii = 1; ii < n; ++ii){
+			v_temp[a] = v[e];
+			v_temp[e] = (v[a] + v[i]) % divisor;
+			v_temp[i] = (v[a] + v[e] + v[o] + v[u]) % divisor;
+			v_temp[o] = (v[i] + v[u]) % divisor;
+			v_temp[u] = v[a];
+			v.swap(v_temp);
+		}
+		int sum = 0;
+		for(const auto e: v){
+			sum += e;
+			sum %= divisor;
+		}
+		return sum;
+	}
 private:
-	const int divisor = 1000000000 + 7;
+	const int divisor = 1e9 + 7;
 };
 
 int main(){
