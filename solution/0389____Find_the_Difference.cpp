@@ -1,5 +1,6 @@
 #include <set>
 #include <string>
+#include "util\frequently_included.h"
 using std::string;
 using std::multiset;
 
@@ -20,5 +21,19 @@ private:
                 for(int i = 0; i < s.size(); ++i)
                         ms.erase(ms.find(s[i]));
                 return *ms.begin();
+        }
+
+        /**
+         * @brief 4ms, 20
+         */
+        char _2(string& s, string& t){
+                vector<int> v(128, 0);
+                for(auto e: s)
+                        ++v[e];
+                for(auto e: t)
+                        --v[e];
+                for(int i = 'a'; ; ++i)
+                        if(v[i])
+                                return i;
         }
 };
