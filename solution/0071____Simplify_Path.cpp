@@ -25,14 +25,13 @@ private:
 				v.push_back(i);
 		for(int i = 1; i < v.size(); ++i){
 			string cur = path.substr(v[i - 1], v[i] - v[i - 1]);
-			if(cur == "/" || cur == "/."){
-				//* pass
-			}else if(cur == "/.."){
+			if(cur == "/" || cur == "/.")
+				continue;
+			else if(cur == "/..")
 				if(!s.empty())
 					s.pop_back();
-			}else{
+			else
 				s.push_back(cur);
-			}
 		}
 		if(s.empty())
 			return "/";
