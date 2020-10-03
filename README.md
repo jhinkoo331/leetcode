@@ -2,4 +2,4 @@
 So difficult...<br/>
 ![so difficut](./image/sad.jpg)
 
-#### Mainly implemented by c, cpp, python & go
+#### Mainly implemented by c, cpp, python & go.
