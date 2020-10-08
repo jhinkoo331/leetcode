@@ -12,11 +12,10 @@ public:
 	}
 	void push(int x) {
 		s.push(x);
-		if(min_s.empty()){
+		if(min_s.empty())
 			min_s.push(x);
-		}else{
+		else
 			min_s.push(min(x, min_s.top()));
-		}
 	}
 	void pop() {
 		s.pop();
