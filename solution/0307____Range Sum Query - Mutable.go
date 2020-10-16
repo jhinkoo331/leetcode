@@ -1,9 +1,10 @@
 package main
 
+// brief: segment-tree, I wrote it by myself ~, bangbangda ~
 // space complexity: 2n
 // insert time complexity: lg_n
 // update time complexity: lg_n
-// perf: 92, 13
+// perf: 100, 13
 type NumArray struct {
 	tree   []int
 	offset int
@@ -36,23 +37,22 @@ func (this *NumArray) SumRange(i int, j int) int {
 }
 
 func (this *NumArray) getSum(i int) int {
-	if i == -1 {
-		return 0
-	}
 	i += 1
-	if this.offset&i != 0 { // special offer
+	// edge condition, all numbers all included
+	if len(this.tree)-this.offset == i {
 		return this.tree[1]
 	}
+	// move the curNode down a level
 	curIndex := 2
 	ans := 0
 	for mask := this.offset >> 1; mask != 0; mask >>= 1 {
-		if mask&i == 0 {
-			curIndex *= 2
-		} else {
+		if mask&i != 0 {
 			ans += this.tree[curIndex]
+			// move the curNode to it's sibling
 			curIndex++
-			curIndex *= 2
 		}
+		curIndex *= 2
+		// move the curNode down a level
 	}
 	return ans
 }
@@ -63,11 +63,3 @@ func (this *NumArray) getSum(i int) int {
  * obj.Update(i,val);
  * param_2 := obj.SumRange(i,j);
  */
-
-func main() {
-	arr := []int{-1}
-	numArray := Constructor(arr)
-	println(numArray.SumRange(0, 0))
-	numArray.Update(0, 1)
-	println(numArray.SumRange(0, 0))
-}
