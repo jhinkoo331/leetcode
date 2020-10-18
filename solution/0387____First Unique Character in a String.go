@@ -1,6 +1,8 @@
 package main
 
 // perf: 90, 99
+// time: O(n), one pass
+// space: O(128)
 func _0387(s string) int {
 	var appear [128]int   // how many times has a char appeared in the string till now
 	var firstAppear []int // chars that appears for only one time
@@ -22,9 +24,25 @@ func _0387(s string) int {
 	}
 }
 
+// perf: 99, 99
+// time: O(n), two pass
+// space: O(128)
+func __0387(s string) int {
+	var appear [128]int
+	for _, c := range s {
+		appear[c]++
+	}
+	for i, c := range s {
+		if appear[c] == 1 {
+			return i
+		}
+	}
+	return -1
+}
+
 // s contains only lowercase characters
 func firstUniqChar(s string) int {
-	return _0387(s)
+	return __0387(s)
 }
 
 func main() {
