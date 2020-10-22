@@ -1,6 +1,7 @@
 package main
 
 // 0ms, 9
+// update some condition tests for better perf.
 func _0012(num int) string {
 	var ans []rune
 	for num >= 1000 {
@@ -11,7 +12,7 @@ func _0012(num int) string {
 		num -= 900
 		ans = append(ans, 'C', 'M')
 	}
-	for num >= 500 {
+	if num >= 500 {
 		num -= 500
 		ans = append(ans, 'D')
 	}
@@ -27,7 +28,7 @@ func _0012(num int) string {
 		num -= 90
 		ans = append(ans, 'X', 'C')
 	}
-	for num >= 50 {
+	if num >= 50 {
 		num -= 50
 		ans = append(ans, 'L')
 	}
@@ -51,7 +52,7 @@ func _0012(num int) string {
 		num -= 4
 		ans = append(ans, 'I', 'V')
 	}
-	for num >= 1 {
+	for num != 0 {
 		num -= 1
 		ans = append(ans, 'I')
 	}
