@@ -2,6 +2,8 @@
 #include "util\frequently_included.h"
 #include "util\Serial.h"
 
+// todo: solution
+
 class Solution {
 public:
         int kthSmallest(TreeNode* root, int k) {
@@ -9,10 +11,7 @@ public:
         }
 private:
         /**
-         * @brief 
          * @perf: 92, 45
-         * @param root 
-         * @param k 
          * @return if bool = true, the return value is the k-th smallest number,
          * 		if bool = false, the return value is count of nodes in the sub-tree
          */
