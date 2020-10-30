@@ -3,16 +3,14 @@
 #include "util\Serial.h"
 
 /**
- * @brief 
  * @perf: 93, 13
- * @space: height of the binary search tree
+ * @space: two times of the height of the bst
  */
 class BSTIterator {
 public:
         BSTIterator(TreeNode* root) {
-                if(root == nullptr){
+                if(root == nullptr)
                         return;
-                }
                 s.push({root, 0});
                 while(s.top().first->left)
                         s.push({s.top().first->left, 0});
