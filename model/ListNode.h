@@ -10,7 +10,7 @@ struct ListNode {
 	ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-typedef ListNode ListNode;
+typedef struct ListNode ListNode;
 
 
 #endif
