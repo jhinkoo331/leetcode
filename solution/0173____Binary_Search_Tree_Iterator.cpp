@@ -40,9 +40,37 @@ private:
 };
 
 /**
- * Your BSTIterator object will be instantiated and called as such:
- * BSTIterator* obj = new BSTIterator(root);
- * int param_1 = obj->next();
- * bool param_2 = obj->hasNext();
+ * @brief this method is elegant than the sln above, which is inspired by sln written by TomKing
+ * @perf: 64, 27
  */
+
+class BSTIterator {
+public:
+        BSTIterator(TreeNode* root) {
+                while(s.size())
+                        s.pop();
+                this->forward(root);
+        }
+        
+        /** @return the next smallest number */
+        int next() {
+                auto temp = this->s.top();
+                s.pop();
+                this->forward(temp->right);
+                return temp->val;
+        }
+        
+        /** @return whether we have a next smallest number */
+        bool hasNext() {
+                return !this->s.empty();        
+        }
+private:
+        stack<TreeNode*> s;
+        void forward(TreeNode* root){
+                while(root){
+                        s.push(root);
+                        root = root->left;
+                }
+        }
+};
 
