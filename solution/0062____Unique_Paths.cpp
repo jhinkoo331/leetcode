@@ -83,6 +83,24 @@ private:
 				v[i][ii] = v[i - 1][ii] + v[i][ii - 1];
 		return v.back().back();
 	}
+	/**
+	 * @perf: 100, 91
+	 * @time: m*n
+	 * @space: min(m, n)
+	 */
+	int _3(int m, int n){
+		// make m smaller than n to save memory
+		if(m > n){
+			int temp = m;
+			m = n;
+			n = temp;
+		}
+		vector<int> v(m, 1);
+		while(--n)
+			for(int i = 1; i < m; ++i)
+				v[i] += v[i - 1];
+		return v.back();
+	}
 };
 
 int main(){
