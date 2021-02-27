@@ -1,5 +1,7 @@
 package main
 
+import "mime"
+
 // time out
 func _51(nums []int) int {
 	ans := 0
@@ -12,6 +14,36 @@ func _51(nums []int) int {
 		}
 	}
 	return ans
+}
+
+type pair struct {
+	left, right int
+}
+
+func _51_2(nums []int) int {
+	var stack []pair
+	stack = append(stack, pair{0, len(nums)})
+	for len(stack) != 0 {
+
+	}
+}
+
+func _51_2_sort(nums []int) (ans int) {
+	if len(nums) < 5 {
+		for i, left_num := range nums {
+			for ii := i + 1; ii < len(nums); ii++ {
+				if nums[i] > nums[ii] {
+					nums[i], nums[ii] = nums[i], nums[ii]
+					ans++
+				}
+			}
+		}
+	} else {
+		mid := len(nums) / 2
+		ans += _51_2_sort(nums[:mid])
+		ans += _51_2_sort(nums[mid:])
+	}
+	return
 }
 
 type Tree struct {
