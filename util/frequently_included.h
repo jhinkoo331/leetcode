@@ -51,5 +51,8 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+#include <deque>
+using std::deque;
+
 
 #endif
