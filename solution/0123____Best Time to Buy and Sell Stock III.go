@@ -1,70 +1,57 @@
 package main
 
-import (
-        "go/ast"
-        "net/http/httputil"
-)
-
-func _0123_findLowAndHigh(prices []int) ([]int, []int) {
-        var low, high []int
-        for index := 0; index < len(prices) - 1; {             // index is not pointing to the last element
-                for index + 1 < len(prices) && prices[index] >= prices[index+1] {
-                        index++
-                }
-                if index == len(prices) - 1 {
-                        break
-                }
-                low = append(low, index)
-                for index + 1 < len(prices) && prices[index] <= prices[index+1] {
-                        index++
-                }
-                high = append(high, index)
-        }
-        return low, high
+func maxProfit(prices []int) int {
+	return o123(prices)
 }
 
-func _0123_process_low_and_high(low, high []int) {
+// time: n
+// space: n
+// perf: 65, 65
+func o123(prices []int) int {
+	// if we do two transactions, one is at left part and the other is at the
+	// right part.
+	// calculate left part max and right part max
 
-}
+	// left[i] = k, means that if we sold out at day i, we may get profit of k
+	left := make([]int, len(prices), len(prices))
+	left[0] = 0
+	pre_min := prices[0]
+	for i := 1; i < len(left); i++ {
+		if prices[i] < pre_min {
+			left[i] = 0
+		} else {
+			left[i] = prices[i] - pre_min
+		}
+		if prices[i] < pre_min {
+			pre_min = prices[i]
+		}
+	}
 
-func _0123(prices []int) int {
-        low, high := _0123_findLowAndHigh(prices)
-        sz := len(low)
-        if len(low) == 0 {
-                return 0
-        }
-        if len(low) == 1 {
-                return high[0] - low[0]
-        }
-        if len(low) == 2 {
-                return high[0] + high[1] - low[0] - low[0]
-        }
-        highestPriceTillNow := make([]int, sz)
-        maxProfitIfPurchase := make([]int, sz)
-        highestPriceTillNow[0] = high[0]
-        for index := 1; index < sz; index++ {
-                if high[index] < highestPriceTillNow[index - 1] {
-                        highestPriceTillNow[index] = highestPriceTillNow[index - 1]
-                } else {
-                        highestPriceTillNow[index] = high[index]
-                }
-        }
-        curHighest := high[sz - 1]
-        for index := sz - 1; index >= 0; index-- {
-                if curHighest < high[index] {
-                        curHighest = high[index]
-                }
-                maxProfitIfPurchase[index] = curHighest - low[index]
-        }
-        for 
-}
+	// right[i] = k, mean that if we brought in at day i, we may get profit of k
+	right := make([]int, len(prices), len(prices))
+	right[len(right)-1] = 0
+	right_max := prices[len(prices)-1]
+	for i := len(right) - 2; i >= 0; i-- {
+		profit := right_max - prices[i]
+		if profit > right[i+1] {
+			right[i] = profit
+		} else {
+			right[i] = right[i+1]
+		}
+		if prices[i] > right_max {
+			right_max = prices[i]
+		}
+	}
 
-// you may complete two transactions at most, which means 0 or 1 transaction
-// is acceptable as well.
-func _maxProfit(prices []int) int {
-        return _0128(prices)
-}
+	max_profit := right[0]
 
-func main() {
-	
+	for i := 0; i < len(left)-1; i++ {
+		profit := left[i] + right[i+1]
+		if profit > max_profit {
+			max_profit = profit
+		}
+	}
+	// fmt.Println("%v", left)
+	// fmt.Println("%v", right)
+	return max_profit
 }
