@@ -8,18 +8,18 @@ func wordBreak(s string, wordDict []string) []string {
 	return o140(s, wordDict)
 }
 
-type o149_trie struct {
+type o140_trie struct {
 	is_word bool
-	child   [148]*o149_trie
+	child   [148]*o140_trie
 }
 
-func o140_init_trie(ss []string) *o149_trie {
-	root := &o149_trie{}
+func o140_init_trie(ss []string) *o140_trie {
+	root := &o140_trie{}
 	for _, s := range ss {
 		cur := root
 		for _, r := range s {
 			if cur.child[int(r)] == nil {
-				cur.child[int(r)] = &o149_trie{}
+				cur.child[int(r)] = &o140_trie{}
 			}
 			cur = cur.child[int(r)]
 		}
@@ -40,7 +40,7 @@ func o140(s string, wordDict []string) []string {
 	return ss
 }
 
-func o140_get_words(s []rune, root *o149_trie) (ans []int) {
+func o140_get_words(s []rune, root *o140_trie) (ans []int) {
 	for i, r := range s {
 		if root.child[int(r)] == nil {
 			break
@@ -52,7 +52,7 @@ func o140_get_words(s []rune, root *o149_trie) (ans []int) {
 	return ans
 }
 
-func o140_helper(s []rune, ans *[][]string, root *o149_trie, cur []string) {
+func o140_helper(s []rune, ans *[][]string, root *o140_trie, cur []string) {
 
 	if len(s) == 0 {
 		temp := make([]string, len(cur), len(cur))
