@@ -63,6 +63,40 @@ func o135(ratings []int) (ret int) {
 	return ret
 }
 
+// perf: 93, 90
+// time: O(n)
+// space: 1
+func oo135(ratings []int) int {
+	sum := 0
+	left, mid, right := 0, 0, 0
+	for {
+		for mid = left; mid+1 < len(ratings) && ratings[mid+1] > ratings[mid]; mid += 1 {
+		}
+		for right = mid; right+1 < len(ratings) && ratings[right] > ratings[right+1]; right += 1 {
+		}
+		ll, rr := mid-left, right-mid
+		sum += (ll) * (ll + 1) / 2
+		sum += (rr) * (rr + 1) / 2
+		if ll > rr {
+			sum += ll
+		} else {
+			sum += rr
+		}
+		sum += 1
+		// change left
+		if right == len(ratings)-1 {
+			break
+		}
+		if ratings[right] == ratings[right+1] {
+			left = right + 1
+		} else {
+			left = right
+			sum -= 1
+		}
+	}
+	return sum
+}
+
 func main() {
 	candy([]int{1, 0, 2})
 }
