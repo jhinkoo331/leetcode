@@ -27,12 +27,16 @@ private:
 				pq.pop();
 			cur = pq.top();
 			pq.pop();
-			if(cur < c)
+			if(cur < c){
 				pq.push(cur * 5);
-			if(cur < b)
 				pq.push(cur * 3);
-			if(cur < a)
 				pq.push(cur * 2);
+			}else if(cur < b){
+				pq.push(cur * 3);
+				pq.push(cur * 2);
+			}else if(cur < a){
+				pq.push(cur * 2);
+			}
 		}
 		return cur;
 	}

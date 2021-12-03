@@ -1,10 +1,5 @@
 package main
 
-type Node struct {
-	Val      int
-	Children []*Node
-}
-
 // perf: 100, 21
 // time: n
 // space: the width of the tree, n at worst

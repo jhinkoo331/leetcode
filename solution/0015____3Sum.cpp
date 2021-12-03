@@ -164,6 +164,46 @@ private:
                         ++i;
                 }
         }
+
+        /**
+         * @brief evolved from _5, we removed the v in _5
+         */
+        void _6(vector<int>& nums){
+                std::sort(nums.begin(), nums.end());
+                if(nums.empty() || nums.back() < 0 || nums.front() > 0)
+                        return;
+                int sz = nums.size();
+                int i = 0;
+                nums.push_back(-1);             //* to reduce edge tests
+                int iii = 
+                for(i = 0; i < sz - 2;){
+                        int target = -nums[i] - nums[i + 1];
+                        while(!v.empty() && nums[v.back()] > target)
+                                v.pop_back();
+                        if(v.empty() || v.back() <= i + 1)
+                                break;
+                        int iii = v.size() - 1;
+
+                        for(int ii = i + 1; ii < sz - 1;){
+                                target = -nums[i] - nums[ii];
+                                while(iii >= 0 && nums[v[iii]] > target)
+                                        --iii;
+                                if(iii < 0 || v[iii] <= ii)
+                                        break;
+                                else if(nums[v[iii]] == target)
+                                        ans.push_back(vector<int>{nums[i], nums[ii], nums[v[iii]]});
+                                //* update ii
+                                while(nums[ii + 1] == nums[ii])
+                                        ++ii;
+                                ++ii;
+                        }
+                        //* update i
+                        while(nums[i + 1] == nums[i])
+                                ++i;
+                        ++i;
+                }
+
+        }
 };
 
 int main(){

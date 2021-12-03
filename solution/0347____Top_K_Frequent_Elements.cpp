@@ -1,14 +1,16 @@
-#include <vector>
-#include <set>
-#include <unordered_map>
-#include <map>
-using std::vector, std::unordered_map, std::multimap;
+#include "util\frequently_included.h"
 
 
+class cmp {
+public:
+	bool operator() (const pair<int, int>& lhs, const pair<int, int>& rhs) const {
+		return lhs.first < rhs.first;
+	}
+};
 class Solution {
 public:
 	vector<int> topKFrequent(vector<int>& nums, int k) {
-		return topKFrequent_1(nums, k);
+		return _1(nums, k);
 	}
 private:
 	vector<int> topKFrequent_1(vector<int>& nums, int k){
@@ -29,10 +31,36 @@ private:
 		}
 		return ret;
 	}
+
+        vector<int> _1(vector<int>& nums, int k){
+                sort(nums.begin(), nums.end());
+                nums.push_back(nums.back() ^ 1);        // sentinel
+                priority_queue<pair<int, int>, vector<pair<int, int>>, cmp> pq;
+                for(int i = 0; i != nums.size() - 1; ){
+                        int ii = i;
+                        while(nums[i] == nums[ii])
+                                ii++;
+                        if(pq.size() < k)
+                                pq.push({ii - i, nums[i]});
+                        else if(pq.top().first < ii - i){
+				pq.pop();
+				pq.push({ii - i, nums[i]});
+			}
+                        i = ii;
+                }
+                vector<int> ans;
+                ans.reserve(k);
+                while(pq.size()){
+                        ans.push_back(pq.top().second);
+                        pq.pop();
+                }
+                return ans;
+        }
 };
 
 int main(){
-	vector<int> v = {1, 1, 1, 2,2,3};
+	// vector<int> v = {1, 1, 1, 2,2,3};
+	vector<int> v = {4,1,-1,2,-1,2,3};
 	Solution sln;
 	sln.topKFrequent(v, 2);
 	return 0;

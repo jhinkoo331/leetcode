@@ -6,8 +6,8 @@ class Solution {
 public:
 	int numIslands(vector<vector<char>>& grid) {
 		int count = 0;
-		for(int i = 0; i < grid.size(); ++i){
-			for(int ii = 0; ii < grid.front().size(); ++ii){
+		for(int i = 0; i < grid.size(); ++i)
+			for(int ii = 0; ii < grid.front().size(); ++ii)
 				if(grid[i][ii] == '1'){
 					count++;
 					grid[i][ii] = 0;
@@ -33,9 +33,7 @@ public:
 							q.push({t.first, t.second + 1});
 						}
 					}
-				}
-			}
-		}
+                }
 		return count;
 	}
 };
