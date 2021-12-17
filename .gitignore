@@ -6,6 +6,8 @@
 # certain files
 *.exe
 *.stackdump
+go.mod
+go.sum
 #*.gitignore
 
 # import from GitHub
