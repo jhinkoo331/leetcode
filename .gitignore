@@ -2,6 +2,7 @@
 /.vscode/
 /.vs/
 /.idea/
+.DS_Store
 
 # certain files
 *.exe
