@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	. "model"
+	. "github.com/jhinkoo331/leetcode/src/model"
 	"strings"
 )
 

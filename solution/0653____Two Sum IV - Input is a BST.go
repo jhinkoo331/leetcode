@@ -1,7 +1,7 @@
 package main
 
 import (
-	. "model"
+	. "github.com/jhinkoo331/leetcode/src/model"
 )
 
 func findTarget(root *TreeNode, k int) bool {

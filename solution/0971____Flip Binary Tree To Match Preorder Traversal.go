@@ -1,6 +1,6 @@
 package main
 
-import . "model"
+import . "github.com/jhinkoo331/leetcode/src/model"
 
 func flipMatchVoyage(root *TreeNode, voyage []int) []int {
 	return n971(root, voyage)

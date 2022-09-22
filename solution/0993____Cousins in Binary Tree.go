@@ -1,7 +1,7 @@
 package main
 
 import (
-	. "model"
+	. "github.com/jhinkoo331/leetcode/src/model"
 )
 
 func isCousins(root *TreeNode, x int, y int) bool {

@@ -1,6 +1,6 @@
 package main
 
-import . "model"
+import . "github.com/jhinkoo331/leetcode/src/model"
 
 func cloneGraph(node *Node) *Node {
 	return o133(node)

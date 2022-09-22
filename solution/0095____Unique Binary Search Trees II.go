@@ -1,6 +1,6 @@
 package main
 
-import . "model"
+import . "github.com/jhinkoo331/leetcode/src/model"
 
 // 0ms, 100
 func generateTrees(n int) []*TreeNode {

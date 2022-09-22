@@ -9,7 +9,7 @@ package main
  * }
  */
 
-import . "model"
+import . "github.com/jhinkoo331/leetcode/src/model"
 
 func searchBST(root *TreeNode, val int) *TreeNode {
 	return s700(root, val)

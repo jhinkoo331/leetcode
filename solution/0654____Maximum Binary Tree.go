@@ -8,7 +8,7 @@ package main
  *     Right *TreeNode
  * }
  */
-import . "model"
+import . "github.com/jhinkoo331/leetcode/src/model"
 
 func constructMaximumBinaryTree(nums []int) *TreeNode {
 	return s654(nums)

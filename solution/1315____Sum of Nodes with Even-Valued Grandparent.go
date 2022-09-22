@@ -1,6 +1,6 @@
 package main
 
-import . "model"
+import . "github.com/jhinkoo331/leetcode/src/model"
 
 func sumEvenGrandparent(root *TreeNode) (ans int) {
 	if root != nil {

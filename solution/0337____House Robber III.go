@@ -1,6 +1,6 @@
 package main
 
-import . "model"
+import . "github.com/jhinkoo331/leetcode/src/model"
 
 // perf: 4ms, 33
 func rob(root *TreeNode) int {

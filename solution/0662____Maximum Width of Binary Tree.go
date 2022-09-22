@@ -1,7 +1,7 @@
 package main
 
 import (
-	. "model"
+	. "github.com/jhinkoo331/leetcode/src/model"
 )
 
 // this method takes too much memory

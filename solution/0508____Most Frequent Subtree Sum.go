@@ -1,6 +1,6 @@
 package main
 
-import . "model"
+import . "github.com/jhinkoo331/leetcode/src/model"
 
 // perf: 4ms, 7.5
 func _0508(root *TreeNode) []int {

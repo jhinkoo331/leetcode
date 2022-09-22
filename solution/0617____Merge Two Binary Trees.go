@@ -1,6 +1,6 @@
 package main
 
-import . "model"
+import . "github.com/jhinkoo331/leetcode/src/model"
 
 // perf: 91, 90
 func f0617(t1 *TreeNode, t2 *TreeNode) *TreeNode {

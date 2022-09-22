@@ -1,6 +1,6 @@
 package main
 
-import . "model"
+import . "github.com/jhinkoo331/leetcode/src/model"
 
 func pruneTree(root *TreeNode) *TreeNode {
 	if !e814(root) {
