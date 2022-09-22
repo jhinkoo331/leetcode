@@ -1,1 +1,0 @@
-# solutions for problems in [luogu](https://www.luogu.com.cn)
