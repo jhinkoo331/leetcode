@@ -1,0 +1,4 @@
+apple 10 7
+orange 100 4
+cherry 15 5
+peach 3 10
