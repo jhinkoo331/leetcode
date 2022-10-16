@@ -1,73 +1,46 @@
 package main
 
 func isScramble(s1 string, s2 string) bool {
-	return e87(s1, s2)
+	return e87([]rune(s1), []rune(s2))
 }
 
-func e87(s, ss string) bool {
-	if len(s) != len(ss) {
-		return false
+func e87(s, ss []rune) bool {
+	//if len(s) == 0 {
+	//    return true
+	//}
+	if len(s) == 1 {
+		return s[0] == ss[0]
 	}
-	var r, rr []rune
-	to_check := [][]rune{[]rune(s), []rune(ss)}
-	for len(to_check) > 0 {
-		if len(r) == 0 {
-			r = to_check[len(to_check)-1]
-			to_check = to_check[:len(to_check)-1]
-			rr = to_check[len(to_check)-1]
-			to_check = to_check[:len(to_check)-1]
+	left, right := make([]int, 128, 128), make([]int, 128, 128)
+	for i, j := 0, len(s)-1; i < len(s)-1; i, j = i+1, j-1 {
+		left[s[i]] += 1
+		left[ss[i]] -= 1
+		right[s[i]] += 1
+		right[ss[j]] -= 1
+		if e87allZero(left) && e87(s[:i+1], ss[:i+1]) && e87(s[i+1:], ss[i+1:]) {
+			return true
 		}
-
-		if string(r) == string(rr) {
-			r = nil
-			rr = nil
-			continue
+		if e87allZero(right) && e87(s[:i+1], ss[j:]) && e87(s[i+1:], ss[:j]) {
+			return true
 		}
-		for len(r) > 0 && r[0] == rr[0] {
-			r = r[1:]
-			rr = rr[1:]
-		}
-		for len(r) > 0 && r[len(r)-1] == rr[len(rr)-1] {
-			r = r[:len(r)-1]
-			rr = rr[:len(rr)-1]
-		}
+	}
+	return false
+}
 
-		diff := 0
-		var char_cnt [128]int
-		for i := 0; ; i++ {
-			if i == len(r)-1 {
-				return false
-			}
-			var temp int
-
-			temp = int(r[i])
-			char_cnt[temp]++
-			if char_cnt[temp] == 1 {
-				diff++
-			} else if char_cnt[temp] == 0 {
-				diff--
-			}
-
-			temp = int(rr[len(rr)-i-1])
-			char_cnt[temp]--
-			if char_cnt[temp] == -1 {
-				diff++
-			} else if char_cnt[temp] == 0 {
-				diff--
-			}
-
-			if diff == 0 {
-				to_check = append(to_check, r[i+1:])
-				to_check = append(to_check, rr[:len(rr)-i-1])
-				r = r[:i+1]
-				rr = rr[len(rr)-i-1:]
-				break
-			}
+func e87allZero(m []int) bool {
+	for _, v := range m {
+		if v != 0 {
+			return false
 		}
 	}
 	return true
 }
 
 func main() {
-	print(isScramble("abcde", "caebd"))
+	println(isScramble("abcde", "caebd"))
+	println(isScramble("a", "a"))
+	println(isScramble("ab", "ba"))
+	println(isScramble("a", "b"))
+	// this case takes 11 seconds...
+	println(isScramble("eebaacbcbcadaaedceaaacadccd", "eadcaacabaddaceacbceaabeccd"))
 }
