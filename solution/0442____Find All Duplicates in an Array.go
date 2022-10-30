@@ -1,41 +1,33 @@
 package main
 
-func findDuplicates(nums []int) []int {
-        return ff442(nums)
-}
+import "fmt"
 
-func f442(nums []int) (ans []int) {
-        nums = append(nums, 0)
-        for i := 0; i < len(nums) - 1; i++ {
-                ii := i
-                for nums[ii] != ii {
-                        nums[ii], ii = ii, nums[ii]
-                }
-                if ii != i {
-                        ans = append(ans, ii)
-                }
-        }
-        return ans
-}
-
-func ff442(nums []int) (ans []int) {
-        mask :=
-        mask := (^(0) >> 1) + 1
-        for i := range nums {
-                val := nums[i]
-                if val < 0 {
-                        val ^= mask
-                }
-                if nums[val-1] < 0 {
-                        ans = append(ans, val)
-                } else {
-                        nums[val-1] ^= mask
-                }
-        }
-        return ans
+// perf: 99.28%, 82%
+func findDuplicates(nums []int) (ans []int) {
+	for i, v := range nums {
+		for {
+			if v == 0 {
+				break
+			}
+			if i+1 == v {
+				//nums[i] = 0
+				break
+			}
+			targetIndex := v - 1
+			if nums[i] == nums[targetIndex] {
+				ans = append(ans, v)
+				nums[i], nums[targetIndex] = 0, 0
+				break
+			}
+			nums[i], nums[targetIndex] = nums[targetIndex], nums[i]
+			v = nums[i]
+		}
+	}
+	return ans
 }
 
 func main() {
-        arr := []int{4,3,2,7,8,2,3,1}
-        findDuplicates(arr)
+	arr := []int{4, 3, 2, 7, 8, 2, 3, 1}
+	fmt.Printf("%v\n", findDuplicates(arr))
+	return
 }
